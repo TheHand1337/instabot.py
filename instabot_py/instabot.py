@@ -1270,8 +1270,8 @@ According to the configuration this bot will:
             self.init_next_iteration('comments')
             comment_text = self.generate_comment()
             if "@username@" in comment_text:
-                comment_text = comment_text.replace('@username@', media[
-                    'node']['owner']['username'])
+                profile = instaloader.Profile.from_id(instaloader.Instaloader().context, media['node']['owner']['id'])
+                comment_text = comment_text.replace('@username@', profile.username)
 
             media_id = media['node']['id']
             if not self.comment(media_id, comment_text):
